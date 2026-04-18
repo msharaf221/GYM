@@ -24,7 +24,7 @@ class SettingsWidget(QWidget):
         layout.setContentsMargins(10, 10, 10, 10)
 
         title = QLabel("الاعدادات والجداول")
-        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #00bcd4; margin-bottom: 10px;")
+        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #2980b9; margin-bottom: 10px;")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
@@ -96,7 +96,7 @@ class LevelsTab(QWidget):
             btn_layout = QHBoxLayout()
             btn_edit = QPushButton("تعديل")
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_edit.clicked.connect(lambda _, lid=lev['id'], n=lev['name']: self.edit_level(lid, n))
             btn_del.clicked.connect(lambda _, lid=lev['id']: self.del_level(lid))
 
@@ -188,7 +188,7 @@ class TeachersTab(QWidget):
             bl = QHBoxLayout(w)
             btn_edit = QPushButton("تعديل")
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_edit.clicked.connect(lambda _, tid=t['id']: self.edit_teacher(tid))
             btn_del.clicked.connect(lambda _, tid=t['id']: self.del_teacher(tid))
             bl.addWidget(btn_edit)
@@ -343,7 +343,7 @@ class CoursesTab(QWidget):
             bl = QHBoxLayout(w)
             btn_edit = QPushButton("تعديل")
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_edit.clicked.connect(lambda _, cid=c['id']: self.edit_course(cid))
             btn_del.clicked.connect(lambda _, cid=c['id']: self.del_course(cid))
             bl.addWidget(btn_edit)
@@ -437,7 +437,7 @@ class CoursesTab(QWidget):
             self.sched_table.setItem(i, 1, QTableWidgetItem(s['day']))
             self.sched_table.setItem(i, 2, QTableWidgetItem(s['time']))
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_del.clicked.connect(lambda _, sid=s['id']: self._del_schedule(sid))
             self.sched_table.setCellWidget(i, 3, btn_del)
 
@@ -513,7 +513,7 @@ class GroupsTab(QWidget):
             bl = QHBoxLayout(w)
             btn_edit = QPushButton("تعديل")
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_edit.clicked.connect(lambda _, gid=g['id']: self.edit_group(gid))
             btn_del.clicked.connect(lambda _, gid=g['id']: self.del_group(gid))
             bl.addWidget(btn_edit)

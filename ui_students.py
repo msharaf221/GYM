@@ -36,9 +36,9 @@ class StudentsWidget(QWidget):
         # Title & total debts
         header = QHBoxLayout()
         title = QLabel("لوحة الطلاب")
-        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #00bcd4;")
+        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #2980b9;")
         self.lbl_debts = QLabel("اجمالي ديون المركز: 0 جنيه")
-        self.lbl_debts.setStyleSheet("font-size: 16px; color: #e74c3c; font-weight: bold;")
+        self.lbl_debts.setStyleSheet("font-size: 16px; color: #c0392b; font-weight: bold;")
         header.addWidget(title)
         header.addStretch()
         header.addWidget(self.lbl_debts)
@@ -65,18 +65,18 @@ class StudentsWidget(QWidget):
         self.search_input.textChanged.connect(self.search_students)
 
         btn_add = QPushButton("اضافة طالب")
-        btn_add.setStyleSheet("background-color: #27ae60;")
+        btn_add.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn_add.clicked.connect(self.add_student_dialog)
 
         btn_transfer = QPushButton("نقل المحددين")
         btn_transfer.clicked.connect(self.transfer_selected)
 
         btn_delete_sel = QPushButton("حذف المحددين")
-        btn_delete_sel.setStyleSheet("background-color: #c0392b;")
+        btn_delete_sel.setStyleSheet("background-color: #c0392b; color: #ffffff;")
         btn_delete_sel.clicked.connect(self.delete_selected)
 
         btn_bulk_pay = QPushButton("دفع جماعي")
-        btn_bulk_pay.setStyleSheet("background-color: #2980b9;")
+        btn_bulk_pay.setStyleSheet("background-color: #2980b9; color: #ffffff;")
         btn_bulk_pay.clicked.connect(self.bulk_pay_selected)
 
         toolbar.addWidget(self.search_input)
@@ -101,14 +101,14 @@ class StudentsWidget(QWidget):
         layout = QVBoxLayout(self.tab_attendance)
 
         info = QLabel("الحضور الذكي: يعرض فقط طلاب المجموعات المجدولة لهذا اليوم")
-        info.setStyleSheet("color: #f39c12; font-size: 13px; margin-bottom: 8px;")
+        info.setStyleSheet("color: #d4880f; font-size: 13px; margin-bottom: 8px;")
         layout.addWidget(info)
 
         ctrl = QHBoxLayout()
         self.combo_att_group = QComboBox()
         self.combo_att_group.currentIndexChanged.connect(self.load_attendance_students)
         btn_save_att = QPushButton("حفظ الحضور")
-        btn_save_att.setStyleSheet("background-color: #27ae60;")
+        btn_save_att.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn_save_att.clicked.connect(self.save_attendance)
         ctrl.addWidget(QLabel("المجموعة:"))
         ctrl.addWidget(self.combo_att_group)
@@ -164,7 +164,7 @@ class StudentsWidget(QWidget):
             bl.setContentsMargins(2, 2, 2, 2)
 
             btn_pay = QPushButton("دفع")
-            btn_pay.setStyleSheet("background-color: #27ae60;")
+            btn_pay.setStyleSheet("background-color: #27ae60; color: #ffffff;")
             btn_pay.clicked.connect(lambda _, sid=s['id']: self.pay_dialog(sid))
 
             btn_profile = QPushButton("ملف")
@@ -174,7 +174,7 @@ class StudentsWidget(QWidget):
             btn_edit.clicked.connect(lambda _, sid=s['id']: self.edit_student(sid))
 
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_del.clicked.connect(lambda _, sid=s['id']: self.del_student(sid))
 
             bl.addWidget(btn_pay)
@@ -188,7 +188,7 @@ class StudentsWidget(QWidget):
                 for col in range(self.table.columnCount()):
                     item = self.table.item(i, col)
                     if item:
-                        item.setBackground(QColor(50, 20, 20))
+                        item.setBackground(QColor(253, 237, 236))
 
     def search_students(self, text):
         if text.strip():
@@ -405,7 +405,7 @@ class StudentsWidget(QWidget):
         form.addRow("المبلغ المدفوع:", inp_amount)
 
         btn = QPushButton("تأكيد الدفع وطباعة الايصال")
-        btn.setStyleSheet("background-color: #27ae60;")
+        btn.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn.clicked.connect(lambda: self._confirm_payment(dlg, student_id, inp_amount.value()))
         form.addRow(btn)
         dlg.exec()
@@ -460,7 +460,7 @@ class StudentsWidget(QWidget):
 
         # Info header
         info = QLabel(f"الاسم: {student['name']}  |  الهاتف: {student['phone'] or '-'}  |  المجموعة: {student['group_name'] or '-'}")
-        info.setStyleSheet("font-size: 14px; font-weight: bold; color: #00bcd4; padding: 8px;")
+        info.setStyleSheet("font-size: 14px; font-weight: bold; color: #2980b9; padding: 8px;")
         layout.addWidget(info)
 
         tabs = QTabWidget()
@@ -509,7 +509,7 @@ class StudentsWidget(QWidget):
         for col, d in enumerate(day_names):
             lbl = QLabel(d)
             lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            lbl.setStyleSheet("font-weight: bold; color: #00bcd4;")
+            lbl.setStyleSheet("font-weight: bold; color: #2980b9;")
             cal_grid.addWidget(lbl, 0, col)
 
         cal_container = QWidget()
@@ -545,13 +545,13 @@ class StudentsWidget(QWidget):
 
                 status = att_map.get(day)
                 if status == 'present':
-                    lbl.setStyleSheet("background-color: #27ae60; color: white; border-radius: 5px; font-weight: bold;")
+                    lbl.setStyleSheet("background-color: #27ae60; color: #ffffff; border-radius: 5px; font-weight: bold;")
                 elif status == 'absent':
-                    lbl.setStyleSheet("background-color: #e74c3c; color: white; border-radius: 5px; font-weight: bold;")
+                    lbl.setStyleSheet("background-color: #e74c3c; color: #ffffff; border-radius: 5px; font-weight: bold;")
                 elif status == 'charged_absence':
-                    lbl.setStyleSheet("background-color: #f39c12; color: white; border-radius: 5px; font-weight: bold;")
+                    lbl.setStyleSheet("background-color: #f39c12; color: #ffffff; border-radius: 5px; font-weight: bold;")
                 else:
-                    lbl.setStyleSheet("background-color: #2c2c3e; color: #aaa; border-radius: 5px;")
+                    lbl.setStyleSheet("background-color: #e8ecf1; color: #7f8c8d; border-radius: 5px;")
 
                 cal_grid.addWidget(lbl, row, col)
                 col += 1
