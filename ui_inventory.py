@@ -21,7 +21,7 @@ class InventoryWidget(QWidget):
         layout.setContentsMargins(10, 10, 10, 10)
 
         title = QLabel("المخزون والمبيعات")
-        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #00bcd4; margin-bottom: 10px;")
+        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #2980b9; margin-bottom: 10px;")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
@@ -38,7 +38,7 @@ class InventoryWidget(QWidget):
         self.inp_price.setSuffix(" جنيه")
 
         btn_add = QPushButton("اضافة")
-        btn_add.setStyleSheet("background-color: #27ae60;")
+        btn_add.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn_add.clicked.connect(self.add_item)
 
         form_layout.addWidget(QLabel("الاسم:"))
@@ -70,7 +70,7 @@ class InventoryWidget(QWidget):
 
             # Sell button
             btn_sell = QPushButton("بيع")
-            btn_sell.setStyleSheet("background-color: #2980b9;")
+            btn_sell.setStyleSheet("background-color: #2980b9; color: #ffffff;")
             btn_sell.clicked.connect(lambda _, iid=item['id']: self.sell_dialog(iid))
             self.table.setCellWidget(i, 4, btn_sell)
 
@@ -81,7 +81,7 @@ class InventoryWidget(QWidget):
             btn_edit = QPushButton("تعديل")
             btn_edit.clicked.connect(lambda _, iid=item['id']: self.edit_item(iid))
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_del.clicked.connect(lambda _, iid=item['id']: self.del_item(iid))
             bl.addWidget(btn_edit)
             bl.addWidget(btn_del)
@@ -164,7 +164,7 @@ class InventoryWidget(QWidget):
         form.addRow("الطالب (اختياري):", combo_student)
 
         btn = QPushButton("تأكيد البيع")
-        btn.setStyleSheet("background-color: #27ae60;")
+        btn.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn.clicked.connect(lambda: self._do_sell(dlg, item_id, inp_qty.value(), combo_student.currentData()))
         form.addRow(btn)
         dlg.exec()

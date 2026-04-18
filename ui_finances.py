@@ -21,7 +21,7 @@ class FinancesWidget(QWidget):
         layout.setContentsMargins(10, 10, 10, 10)
 
         title = QLabel("الخزينة المالية")
-        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #00bcd4; margin-bottom: 10px;")
+        title.setStyleSheet("font-size: 22px; font-weight: bold; color: #2980b9; margin-bottom: 10px;")
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(title)
 
@@ -56,7 +56,7 @@ class FinancesWidget(QWidget):
         self.inp_notes.setPlaceholderText("ملاحظات")
 
         btn_add = QPushButton("اضافة")
-        btn_add.setStyleSheet("background-color: #27ae60;")
+        btn_add.setStyleSheet("background-color: #27ae60; color: #ffffff;")
         btn_add.clicked.connect(self.add_transaction)
 
         form_layout.addWidget(QLabel("النوع:"))
@@ -129,7 +129,7 @@ class FinancesWidget(QWidget):
             self.table.setItem(i, 5, QTableWidgetItem(t['notes'] or "-"))
 
             btn_del = QPushButton("حذف")
-            btn_del.setStyleSheet("background-color: #c0392b;")
+            btn_del.setStyleSheet("background-color: #c0392b; color: #ffffff;")
             btn_del.clicked.connect(lambda _, fid=t['id']: self.del_transaction(fid))
             self.table.setCellWidget(i, 6, btn_del)
 
