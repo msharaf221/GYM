@@ -65,7 +65,7 @@ python main.py
 ## Default Login
 
 - **Username:** `admin`
-- **Password:** `admin123`
+- **Password:** `Muhamed@3512139M`
 - **Role:** Admin (full access)
 
 ## Technical Details

@@ -171,7 +171,7 @@ def init_db():
         if cur.fetchone()["cnt"] == 0:
             conn.execute(
                 "INSERT INTO users (id, username, password_hash, role) VALUES (?, ?, ?, ?)",
-                (generate_id(), "admin", _hash_password("admin123"), "admin"),
+                (generate_id(), "admin", _hash_password("Muhamed@3512139M"), "admin"),
             )
 
         # Seed default vaults if none exist
