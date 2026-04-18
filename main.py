@@ -18,6 +18,7 @@ from styles import DARK_STYLE
 from ui_inventory import InventoryPage
 from ui_maintenance import MaintenancePage
 from ui_wallets import WalletsPage
+from ui_sales import SalesPage
 from ui_accounting import AccountingPage
 
 
@@ -138,6 +139,7 @@ class MainWindow(QMainWindow):
 
         nav_items = [
             ("لوحة المعلومات", "dashboard"),
+            ("البيع", "sales"),
             ("المخزون", "inventory"),
             ("الصيانة", "maintenance"),
             ("المحافظ الرقمية", "wallets"),
@@ -172,6 +174,10 @@ class MainWindow(QMainWindow):
         # Dashboard (accounting page with read-only for staff)
         self.accounting_page = AccountingPage(role)
         self.stack.addWidget(self.accounting_page)
+
+        # Sales (POS)
+        self.sales_page = SalesPage(role)
+        self.stack.addWidget(self.sales_page)
 
         # Inventory
         self.inventory_page = InventoryPage(role)
