@@ -606,29 +606,37 @@ def get_transactions(vault_id=None, from_date=None, to_date=None, source_type=No
 def get_profit_summary(from_date=None, to_date=None):
     """Return dict with accessory_profit, maintenance_profit, wallet_commissions."""
     with get_connection() as conn:
-        date_filter = ""
-        params = []
+        sales_filter = ""
+        maint_filter = ""
+        wallet_filter = ""
+        params_sales = []
+        params_maint = []
+        params_wallet = []
         if from_date and to_date:
-            date_filter = " AND date(created_at) BETWEEN ? AND ?"
-            params = [from_date, to_date]
+            sales_filter = " AND date(created_at) BETWEEN ? AND ?"
+            params_sales = [from_date, to_date]
+            maint_filter = " AND date(received_at) BETWEEN ? AND ?"
+            params_maint = [from_date, to_date]
+            wallet_filter = " AND date(created_at) BETWEEN ? AND ?"
+            params_wallet = [from_date, to_date]
 
         # Accessories profit
         cur = conn.execute(
-            f"SELECT COALESCE(SUM(profit), 0) as total FROM sales WHERE 1=1{date_filter}", params
+            f"SELECT COALESCE(SUM(profit), 0) as total FROM sales WHERE 1=1{sales_filter}", params_sales
         )
         acc_profit = cur.fetchone()["total"]
 
         # Maintenance profit
         cur = conn.execute(
-            f"SELECT COALESCE(SUM(service_fee - spare_part_cost), 0) as total FROM maintenance WHERE status='delivered'{date_filter}",
-            params,
+            f"SELECT COALESCE(SUM(service_fee - spare_part_cost), 0) as total FROM maintenance WHERE status='delivered'{maint_filter}",
+            params_maint,
         )
         maint_profit = cur.fetchone()["total"]
 
         # Wallet commissions
         cur = conn.execute(
-            f"SELECT COALESCE(SUM(shop_commission), 0) as total FROM wallet_transactions WHERE 1=1{date_filter}",
-            params,
+            f"SELECT COALESCE(SUM(shop_commission), 0) as total FROM wallet_transactions WHERE 1=1{wallet_filter}",
+            params_wallet,
         )
         wallet_comm = cur.fetchone()["total"]
 
